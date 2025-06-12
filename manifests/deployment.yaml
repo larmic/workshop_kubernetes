@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: abfallkalender
+  namespace: gamma-lightning-talk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: abfallkalender
+  template:
+    metadata:
+      labels:
+        app: abfallkalender
+    spec:
+      containers:
+        - name: abfall-kalender-api
+          image: larmic/abfallkalender_api:latest
