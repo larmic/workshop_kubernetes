@@ -128,6 +128,14 @@ spec:
     app: abfallkalender
 ```
 
+```shell
+➜  ~ curl http://localhost:30429/abfallkalender-api
+openapi: 3.0.3
+
+➜  ~ curl http://localhost:30429/abfallkalender-api/street/Langwedeler+Stra%C3%9Fe/number/3a/next
+{"day_of_collection":"2025-06-14","garbage_types":["blue","yellow"]}
+```
+
 TODO nodeport erklären
 
 ```shell
