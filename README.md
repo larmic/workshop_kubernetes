@@ -29,11 +29,12 @@ NAME             STATUS   ROLES           AGE    VERSION
 docker-desktop   Ready    control-plane   170m   v1.32.2
 ```
 
-## Weitere Hinweise und Tips
+## Weitere Hinweise und Tipps
 
 * siehe auch [kubectl Spickzettel](https://kubernetes.io/de/docs/reference/kubectl/cheatsheet/)
 * geht etwas schief, kann der gesamte Namespace mit einem `kubectl delete namespace gamma-lightning-talk` abgeräumt
-  werden! Danach müssen die Schritte allerdings wiederholt werden.
+  werden! Danach müssen die Schritte allerdings wiederholt werden. Alternativ bietet auch docker desktop eine 
+  Möglichkeit den Cluster aufzuräumen
 
 ## Der Talk
 
