@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: abfallkalender
+  namespace: gamma-lightning-talk
+spec:
+  rules:
+    - host: abfallkalender.gamma.neusta.de
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: abfallkalender
+                port:
+                  number: 80

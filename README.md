@@ -6,7 +6,8 @@ Dies ist ein kleiner Lightning Talk, der den Einstieg in Kubernetes ermöglichen
 
 * Docker
 * Docker Desktop mit aktivierter Kubernetes Engine
-* [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+* [kubectl](https://kubernetes.io/docs/reference/kubectl/) für die CLI-Kommunikation mit dem Cluster
+* [Helm Package Manager](https://helm.sh/) für die Ingress-Installation
 * Optional: [K9S](https://k9scli.io/) oder [Open Lens](https://github.com/MuhammedKalkan/OpenLens)
 
 ```shell
@@ -118,13 +119,16 @@ metadata:
   name: abfallkalender
   namespace: gamma-lightning-talk
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 80
       targetPort: 8080
+      nodePort: 30429
   selector:
     app: abfallkalender
 ```
+
+TODO nodeport erklären
 
 ```shell
 # Service hinzufügen
@@ -141,22 +145,39 @@ abfallkalender   ClusterIP   10.99.139.216   <none>        80/TCP    17s
 
 Ein Ingress ist ein API-Objekt, das HTTP/HTTPS-Routen von außerhalb des Clusters zu Services innerhalb des Clusters bereitstellt. Es fungiert als Eingangstor für externe Anfragen.
 
+```shell
+# Prüfen, ob ein Ingress verfügbar ist
+# Docker Desktop Kubernetes bringt keinen eigenen mit
+➜  ~ kubectl get ingressclass
+No resources found
+
+# Traefik Ingress Controller mit Helm installieren
+➜  ~ helm repo add traefik https://traefik.github.io/charts
+➜  ~ helm repo update
+➜  ~ helm install traefik traefik/traefik
+
+# Ingress controller prüfen
+➜  ~ kubectl get ingressclass
+NAME      CONTROLLER                      PARAMETERS   AGE
+traefik   traefik.io/ingress-controller   <none>       23s
+```
+
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: meine-anwendung-ingress
-  namespace: mein-namespace
+  name: abfallkalender
+  namespace: gamma-lightning-talk
 spec:
   rules:
-  - host: meine-anwendung.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: meine-anwendung-service
-            port:
-              number: 80
+    - host: abfallkalender.gamma.neusta.de
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: abfallkalender
+                port:
+                  number: 80
 ```

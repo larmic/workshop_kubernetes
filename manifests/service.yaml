@@ -4,9 +4,10 @@ metadata:
   name: abfallkalender
   namespace: gamma-lightning-talk
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 80
       targetPort: 8080
+      nodePort: 30429
   selector:
     app: abfallkalender
