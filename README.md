@@ -193,3 +193,20 @@ spec:
                 port:
                   number: 80
 ```
+
+```shell
+➜  ~ kubectl apply -f manifests/ingress.yaml
+ingress.networking.k8s.io/abfallkalender created
+
+# Url auf dem Testsystem bekannt machen
+➜  ~ less /etc/hosts
+127.0.0.1 abfallkalender.gamma.neusta.de
+```
+
+```shell
+➜  ~ curl http://abfallkalender.gamma.neusta.de/abfallkalender-api
+openapi: 3.0.3
+
+➜  ~ curl http://abfallkalender.gamma.neusta.de/abfallkalender-api/street/Langwedeler+Stra%C3%9Fe/number/3a/next
+{"day_of_collection":"2025-06-14","garbage_types":["blue","yellow"]}
+```
