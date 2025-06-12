@@ -18,7 +18,7 @@ CURRENT   NAME                 CLUSTER              AUTHINFO             NAMESPA
 *         k3s-pi5              k3s-pi5              k3s-pi5              
           neusta:skills:dev    neusta:skills:dev    neusta:skills:dev    
           neusta:skills:prod   neusta:skills:prod   neusta:skills:prod 
-      
+
 # Wechsel des contexts auf docker-desktop    
 ➜  ~ kubectl config use-context docker-desktop
 Switched to context "docker-desktop".
@@ -136,7 +136,11 @@ openapi: 3.0.3
 {"day_of_collection":"2025-06-14","garbage_types":["blue","yellow"]}
 ```
 
-TODO nodeport erklären
+Kubernetes Service Types:
+* ClusterIP (default): Macht den Service nur innerhalb des Clusters erreichbar
+* NodePort: Öffnet einen Port auf jedem Node, der auf den Service weiterleitet (Port-Bereich: 30000-32767)
+* LoadBalancer: Nutzt einen externen Load Balancer für den Zugriff auf den Service
+* ExternalName: Leitet auf einen externen DNS-Namen weiter
 
 ```shell
 # Service hinzufügen
