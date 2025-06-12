@@ -210,3 +210,39 @@ openapi: 3.0.3
 ➜  ~ curl http://abfallkalender.gamma.neusta.de/abfallkalender-api/street/Langwedeler+Stra%C3%9Fe/number/3a/next
 {"day_of_collection":"2025-06-14","garbage_types":["blue","yellow"]}
 ```
+
+## Next steps
+
+Für ein tieferes Verständnis von Kubernetes sollten folgende Konzepte als nächstes betrachtet werden:
+
+### ConfigMap
+
+ConfigMaps ermöglichen die Trennung von Konfigurationsdaten von Container-Images. Sie speichern nicht-vertrauliche Daten in Key-Value-Paaren und können als Umgebungsvariablen, Kommandozeilenargumente oder Konfigurationsdateien in Pods eingebunden werden.
+
+### Secret
+
+Secrets sind ähnlich wie ConfigMaps, werden aber speziell für vertrauliche Daten wie Passwörter, OAuth-Tokens oder SSH-Schlüssel verwendet. Kubernetes speichert Secrets base64-kodiert, bietet aber auch Möglichkeiten zur Verschlüsselung.
+
+### PV (Persistent Volume) und PVC (Persistent Volume Claim)
+
+Persistent Volumes (PV) bieten eine API für Speicherressourcen im Cluster. Persistent Volume Claims (PVC) sind Anforderungen eines Pods an diese Speicherressourcen. Diese Abstraktion ermöglicht es, Speicher unabhängig vom Pod-Lebenszyklus zu verwalten.
+
+### Helm
+
+Helm ist ein Paketmanager für Kubernetes, der die Installation und Verwaltung von Anwendungen vereinfacht. Mit Helm-Charts können komplexe Anwendungen mit einem Befehl installiert werden. Helm bietet auch Versionierung, Rollbacks und Templating für Kubernetes-Manifeste.
+
+### Kustomize
+
+Kustomize ist ein Tool zur Anpassung von Kubernetes-Manifesten ohne Templates. Es ermöglicht die Verwaltung von Konfigurationen für verschiedene Umgebungen (Entwicklung, Produktion) ohne Duplikation von YAML-Dateien.
+
+### StatefulSets
+
+StatefulSets verwalten zustandsbehaftete Anwendungen wie Datenbanken. Im Gegensatz zu Deployments bieten sie stabile Netzwerkidentitäten und persistenten Speicher für jeden Pod.
+
+### DaemonSets
+
+DaemonSets stellen sicher, dass auf jedem (oder ausgewählten) Node im Cluster eine Kopie eines Pods läuft. Sie eignen sich für Infrastrukturaufgaben wie Monitoring, Logging oder Netzwerk-Plugins.
+
+### RBAC (Role-Based Access Control)
+
+RBAC ermöglicht die detaillierte Zugriffskontrolle in Kubernetes. Mit Rollen, ClusterRollen, RoleBindings und ClusterRoleBindings können Berechtigungen für Benutzer und ServiceAccounts definiert werden.
